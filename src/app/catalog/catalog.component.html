@@ -1,0 +1,35 @@
+<section class="container">
+  <div fxLayout="row">
+    <div fxFlex="70">
+      <h1>catálogo de cursos</h1>
+    </div>
+    <div fxFlex>
+      <app-search-bar (change)="search($event)"></app-search-bar>
+    </div>
+  </div>
+
+  <div class="courses-list" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <mat-card *ngFor="let course of courses" color="background">
+      <img mat-card-image [src]="course.logo_url">
+      <mat-card-header>
+        <mat-card-title>
+          <h4>{{course.title}}</h4>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <span *ngIf="course.is_paid">por apenas <strong>{{course.price | currency:'BRL':'symbol':'1.2-2' }}</strong></span>
+        <span *ngIf="!course.is_paid"><strong>Grátis</strong></span>
+        <p>{{course.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="actions">
+          <button mat-button color="accent">MATRICULE-SE</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center" *ngIf="loadMoreAvailable">
+    <button mat-raised-button color="primary" (click)="paginate($event)">CARREGAR MAIS</button>
+  </div>
+</section>

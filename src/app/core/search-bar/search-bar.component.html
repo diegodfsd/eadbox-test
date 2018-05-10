@@ -1,0 +1,8 @@
+<form novalidate autocomplete="off" [formGroup]="searchForm" (submit)="search($event)">
+  <mat-form-field class="form-control">
+    <input type="search" class="search-box" matInput placeholder="Buscar cursos" formControlName="q">
+  </mat-form-field>
+  <button type="submit" mat-icon-button color="primary" disabled="true">
+    <mat-icon aria-label="search">search</mat-icon>
+  </button>
+</form>
